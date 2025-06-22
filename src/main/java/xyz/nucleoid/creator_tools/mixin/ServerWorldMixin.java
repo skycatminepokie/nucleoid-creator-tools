@@ -13,11 +13,11 @@ import xyz.nucleoid.creator_tools.workspace.MapWorkspaceManager;
 public class ServerWorldMixin {
     @Inject(method = "addPlayer", at = @At("RETURN"))
     private void addPlayer(ServerPlayerEntity player, CallbackInfo ci) {
-        MapWorkspaceManager.get(player.server).onPlayerAddToWorld(player, (ServerWorld) (Object) this);
+        MapWorkspaceManager.get(player.getServer()).onPlayerAddToWorld(player, (ServerWorld) (Object) this);
     }
 
     @Inject(method = "removePlayer", at = @At("RETURN"))
     private void removePlayer(ServerPlayerEntity player, Entity.RemovalReason reason, CallbackInfo ci) {
-        MapWorkspaceManager.get(player.server).onPlayerRemoveFromWorld(player, (ServerWorld) (Object) this);
+        MapWorkspaceManager.get(player.getServer()).onPlayerRemoveFromWorld(player, (ServerWorld) (Object) this);
     }
 }

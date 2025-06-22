@@ -8,6 +8,8 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.TeleportTarget;
 import net.minecraft.world.World;
@@ -38,31 +40,27 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity implements Wo
 
     private int creatorToolsProtocolVersion = WorkspaceNetworking.NO_PROTOCOL_VERSION;
 
-    private ServerPlayerEntityMixin(World world, BlockPos blockPos, float yaw, GameProfile gameProfile) {
-        super(world, blockPos, yaw, gameProfile);
+    private ServerPlayerEntityMixin(World world, GameProfile gameProfile) {
+        super(world, gameProfile);
     }
 
-    @Inject(method = "writeCustomDataToNbt", at = @At("RETURN"))
-    private void writeData(NbtCompound root, CallbackInfo ci) {
-        var creatorTools = new NbtCompound();
+    @Inject(method = "writeCustomData", at = @At("RETURN"))
+    private void writeData(WriteView view, CallbackInfo ci) {
+        var creatorTools = view.get(CreatorTools.ID);
 
         creatorTools.put("workspace_return", ReturnPosition.MAP_CODEC, this.workspaceReturns);
         creatorTools.putNullable("leave_return", ReturnPosition.CODEC, this.leaveReturn);
-
-        root.put(CreatorTools.ID, creatorTools);
     }
 
-    @Inject(method = "readCustomDataFromNbt", at = @At("RETURN"))
-    private void readData(NbtCompound root, CallbackInfo ci) {
-        var creatorTools = root.getCompoundOrEmpty(CreatorTools.ID);
+    @Inject(method = "readCustomData", at = @At("RETURN"))
+    private void readData(ReadView view, CallbackInfo ci) {
+        var creatorTools = view.getReadView(CreatorTools.ID);
 
         this.workspaceReturns.clear();
 
-        creatorTools.get("workspace_return", ReturnPosition.MAP_CODEC).ifPresent(returns -> {
-            this.workspaceReturns.putAll(returns);
-        });
+        creatorTools.read("workspace_return", ReturnPosition.MAP_CODEC).ifPresent(this.workspaceReturns::putAll);
 
-        this.leaveReturn = creatorTools.get("leave_return", ReturnPosition.CODEC).orElse(null);
+        this.leaveReturn = creatorTools.read("leave_return", ReturnPosition.CODEC).orElse(null);
     }
 
     @Inject(method = "copyFrom", at = @At("RETURN"))
