@@ -36,7 +36,7 @@ public final class IncludeEntityItem extends Item implements PolymerItem {
             if (workspace != null) {
                 if (!workspace.getBounds().contains(entity.getBlockPos())) {
                     user.sendMessage(
-                            Text.translatable("item.nucleoid_creator_tools.include_entity.target_not_in_map", workspace.getIdentifier())
+                            Text.translatable("item.nucleoid_creator_tools.include_entity.target_not_in_map", Text.of(workspace.getIdentifier()))
                                     .formatted(Formatting.RED),
                             false);
                     return ActionResult.FAIL;
@@ -45,12 +45,12 @@ public final class IncludeEntityItem extends Item implements PolymerItem {
                 if (workspace.containsEntity(entity.getUuid())) {
                     workspace.removeEntity(entity.getUuid());
                     user.sendMessage(
-                            Text.translatable("item.nucleoid_creator_tools.include_entity.removed", workspace.getIdentifier()),
+                            Text.translatable("item.nucleoid_creator_tools.include_entity.removed", Text.of(workspace.getIdentifier())),
                             true);
                 } else {
                     workspace.addEntity(entity.getUuid());
                     user.sendMessage(
-                            Text.translatable("item.nucleoid_creator_tools.include_entity.added", workspace.getIdentifier()),
+                            Text.translatable("item.nucleoid_creator_tools.include_entity.added", Text.of(workspace.getIdentifier())),
                             true);
                 }
                 return ActionResult.SUCCESS;
