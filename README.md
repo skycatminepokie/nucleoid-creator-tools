@@ -13,7 +13,7 @@ The required `id` is a unique identifier for your workspace in `namespace:identi
 You are also able to create workspaces with custom chunk generators: `/map open <id> like <dimension>` (e.g. `/map open bedwars:nether like minecraft:nether`)
 
 ### Moving in and out of workspaces
-Once you have created a workspace, you need to be able travel between them.
+Once you have created a workspace, you need to be able to travel between them.
 
 This is possible by running: `/map join <id>`, which will teleport you into that workspace dimension.
 Once you are in the workspace dimension, you are free to build whatever you want!
@@ -52,7 +52,7 @@ Now, you can run `/map region commit <marker>`. This will add the highlighted re
 
 When selecting a region with the _Add Region_ item, you can additionally change the selection mode by sneaking & right clicking. This cycles through 3 modes:
   - offset mode: the highlighted block is the block you are looking at, offset by the side you are looking at it from (like placing a block)
-  - exact mode: the highlighted block is the exact block your are looking at (like breaking a block)
+  - exact mode: the highlighted block is the exact block you are looking at (like breaking a block)
   - at feet mode: the highlighted block is the block at your feet
 
 #### Useful region commands
@@ -62,7 +62,7 @@ When selecting a region with the _Add Region_ item, you can additionally change 
  - `/map region remove at <pos>`: removes all regions intersecting with the given `pos` from the current workspace
 
 ### Attaching data
-It may desirable to communicate more information about the map to the code than just regions. This can be done by attaching arbitrary NBT data which is later accessible by the code.
+It may be desirable to communicate more information about the map to the code than just regions. This can be done by attaching arbitrary NBT data which is later accessible by the code.
 
 Data can be either attached to a region or to the map as a whole.
 
