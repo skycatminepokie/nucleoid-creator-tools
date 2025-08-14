@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+import net.minecraft.item.Item.Settings;
 import org.jetbrains.annotations.Nullable;
 
 import eu.pb4.polymer.core.api.item.PolymerItem;
