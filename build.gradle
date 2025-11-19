@@ -5,9 +5,12 @@ plugins {
 
 }
 
-// archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
+
+base {
+    archivesName = project.archives_base_name
+}
 
 loom {
   accessWidenerPath = file("src/main/resources/creator_tools.accesswidener")
@@ -55,8 +58,10 @@ java {
 }
 
 jar {
+  inputs.property "archivesName", project.base.archivesName
+
   from("LICENSE") {
-    rename { "${it}_${project.archivesBaseName}"}
+    rename { "${it}_${inputs.properties.archivesName}"}
   }
 }
 
