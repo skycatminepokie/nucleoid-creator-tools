@@ -1,13 +1,11 @@
 plugins {
-  id 'fabric-loom' version '1.10.+'
+  id 'fabric-loom' version '1.13.+'
   id 'maven-publish'
   id "com.modrinth.minotaur" version "2.+"
 
 }
 
-sourceCompatibility = targetCompatibility = JavaVersion.VERSION_21
-
-archivesBaseName = project.archives_base_name
+// archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
 
@@ -53,6 +51,7 @@ tasks.withType(JavaCompile).configureEach {
 
 java {
   withSourcesJar()
+  sourceCompatibility = targetCompatibility = JavaVersion.VERSION_21
 }
 
 jar {
