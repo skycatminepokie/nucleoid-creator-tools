@@ -308,7 +308,7 @@ public final class MapWorkspace {
         });
 
         for (var entity : entities) {
-            map.addEntity(entity, this.globalToLocal(entity.getPos()));
+            map.addEntity(entity, this.globalToLocal(entity.getEntityPos()));
         }
     }
 

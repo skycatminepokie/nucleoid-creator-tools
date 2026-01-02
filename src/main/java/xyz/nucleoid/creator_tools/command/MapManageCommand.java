@@ -267,7 +267,7 @@ public final class MapManageCommand {
         var player = source.getPlayerOrThrow();
 
         var workspaceManager = MapWorkspaceManager.get(source.getServer());
-        var workspace = workspaceManager.byDimension(player.getWorld().getRegistryKey());
+        var workspace = workspaceManager.byDimension(player.getEntityWorld().getRegistryKey());
 
         if (workspace == null) {
             throw MAP_NOT_HERE.create();

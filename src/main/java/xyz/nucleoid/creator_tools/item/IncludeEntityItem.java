@@ -27,7 +27,7 @@ public final class IncludeEntityItem extends Item implements PolymerItem {
 
     @Override
     public ActionResult useOnEntity(ItemStack stack, PlayerEntity user, LivingEntity entity, Hand hand) {
-        var world = user.getWorld();
+        var world = user.getEntityWorld();
         if (!world.isClient()) {
             var workspaceManager = MapWorkspaceManager.get(world.getServer());
 

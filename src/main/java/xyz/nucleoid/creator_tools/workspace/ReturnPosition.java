@@ -34,16 +34,17 @@ public record ReturnPosition(RegistryKey<World> dimension, Vec3d position, float
     }
 
     public static ReturnPosition capture(PlayerEntity player) {
-        return new ReturnPosition(player.getWorld().getRegistryKey(), player.getPos(), player.getYaw(), player.getPitch());
+        return new ReturnPosition(player.getEntityWorld().getRegistryKey(), player.getEntityPos(), player.getYaw(), player.getPitch());
     }
 
     public static ReturnPosition ofSpawn(ServerWorld world) {
-        var spawnPos = world.getSpawnPos();
+
+        var spawnPos = world.getSpawnPoint().getPos();
         return new ReturnPosition(world.getRegistryKey(), Vec3d.ofBottomCenter(spawnPos), 0.0F, 0.0F);
     }
 
     public void applyTo(ServerPlayerEntity player) {
-        var world = player.getServer().getWorld(this.dimension);
+        var world = player.getEntityWorld().getServer().getWorld(this.dimension);
         player.teleportTo(new TeleportTarget(world, this.position, Vec3d.ZERO, this.yaw, this.pitch, TeleportTarget.NO_OP));
     }
 }

@@ -162,7 +162,7 @@ public final class ServersideWorkspaceEditor implements WorkspaceEditor {
 
         ElementHolder holder = new ElementHolder();
         holder.addElement(element);
-        var attachment = SinglePlayerChunkAttachment.of(holder, this.player.getWorld(), region.bounds().center(), this.player);
+        var attachment = SinglePlayerChunkAttachment.of(holder, this.player.getEntityWorld(), region.bounds().center(), this.player);
 
         var marker = new Marker(element, attachment);
         marker.update(region, true, this.distanceSquaredToRegion(region));

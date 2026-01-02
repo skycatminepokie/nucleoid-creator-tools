@@ -41,7 +41,7 @@ public final class RegionVisibilityFilterItem extends Item implements PolymerIte
         var stack = player.getStackInHand(hand);
 
         if (player instanceof ServerPlayerEntity serverPlayer) {
-            var workspaceManager = MapWorkspaceManager.get(serverPlayer.getServer());
+            var workspaceManager = MapWorkspaceManager.get(world.getServer());
             var editor = workspaceManager.getEditorFor(serverPlayer);
 
             var regions = getRegions(stack);

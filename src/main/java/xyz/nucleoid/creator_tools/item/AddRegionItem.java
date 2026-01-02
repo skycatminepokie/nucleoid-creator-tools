@@ -25,7 +25,7 @@ public final class AddRegionItem extends Item implements PolymerItem {
         }
 
         if (player instanceof ServerPlayerEntity serverPlayer) {
-            var workspaceManager = MapWorkspaceManager.get(serverPlayer.getServer());
+            var workspaceManager = MapWorkspaceManager.get(world.getServer());
             var editor = workspaceManager.getEditorFor(serverPlayer);
 
             if (editor != null && editor.useRegionItem()) {

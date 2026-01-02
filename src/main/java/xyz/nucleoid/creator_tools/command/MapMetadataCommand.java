@@ -472,7 +472,7 @@ public final class MapMetadataCommand {
         var map = getWorkspaceForSource(source);
 
         long result = EntityArgumentType.getEntities(context, "entities").stream()
-                .filter(entity -> entity.getWorld() == world && !(entity instanceof PlayerEntity)
+                .filter(entity -> entity.getEntityWorld() == world && !(entity instanceof PlayerEntity)
                         && map.getBounds().contains(entity.getBlockPos()))
                 .filter(entity -> map.addEntity(entity.getUuid()))
                 .count();
@@ -494,7 +494,7 @@ public final class MapMetadataCommand {
         var map = getWorkspaceForSource(source);
 
         long result = EntityArgumentType.getEntities(context, "entities").stream()
-                .filter(entity -> entity.getWorld() == world && !(entity instanceof PlayerEntity))
+                .filter(entity -> entity.getEntityWorld() == world && !(entity instanceof PlayerEntity))
                 .filter(entity -> map.removeEntity(entity.getUuid()))
                 .count();
 

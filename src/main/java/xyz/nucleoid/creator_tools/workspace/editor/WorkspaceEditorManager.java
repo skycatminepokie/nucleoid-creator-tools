@@ -62,7 +62,7 @@ public final class WorkspaceEditorManager {
 
     @Nullable
     public WorkspaceEditor getEditorFor(ServerPlayerEntity player) {
-        var workspace = this.workspaces.get(player.getWorld().getRegistryKey());
+        var workspace = this.workspaces.get(player.getEntityWorld().getRegistryKey());
         if (workspace != null) {
             return workspace.editors.get(player.getUuid());
         } else {

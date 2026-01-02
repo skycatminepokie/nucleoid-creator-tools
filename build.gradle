@@ -1,5 +1,5 @@
 plugins {
-  id 'fabric-loom' version '1.10.+'
+  id 'fabric-loom' version '1.13.+'
   id 'maven-publish'
   id "com.modrinth.minotaur" version "2.+"
 
@@ -29,13 +29,17 @@ dependencies {
 
   modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-  modImplementation include('eu.pb4:polymer-core:0.13.2+1.21.6')
-  modImplementation include('eu.pb4:polymer-virtual-entity:0.13.2+1.21.6')
-  modImplementation include('xyz.nucleoid:server-translations-api:2.5.1+1.21.5')
-  modImplementation include('xyz.nucleoid:fantasy:0.6.7+1.21.5')
-  modImplementation(include('me.lucko:fabric-permissions-api:0.4.0'))
+  modImplementation include('eu.pb4:polymer-core:0.15.1+1.21.11')
+  modImplementation include('eu.pb4:polymer-virtual-entity:0.15.1+1.21.11')
+  modImplementation include('xyz.nucleoid:server-translations-api:2.5.2+1.21.9-pre3') {
+      exclude(group: "net.fabricmc.fabric-api")
+  }
+  modImplementation include('xyz.nucleoid:fantasy:0.7.0+1.21.11') {
+      exclude(group: "net.fabricmc.fabric-api")
+  }
+  modImplementation(include('me.lucko:fabric-permissions-api:0.6.1'))
 
-  modImplementation include('xyz.nucleoid:map-templates:0.2.2+1.21.6')
+  modImplementation include('xyz.nucleoid:map-templates:0.2.2+1.21.10')
 }
 
 processResources {

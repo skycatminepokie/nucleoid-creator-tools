@@ -39,9 +39,9 @@ public final class ParticleOutlineRenderer {
     }
 
     private static void spawnParticleIfVisible(ServerPlayerEntity player, ParticleEffect effect, double x, double y, double z) {
-        var world = player.getWorld();
+        var world = player.getEntityWorld();
 
-        var delta = player.getPos().subtract(x, y, z);
+        var delta = player.getEntityPos().subtract(x, y, z);
         double length2 = delta.lengthSquared();
         if (length2 > 256 * 256) {
             return;

@@ -10,7 +10,9 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.GameRules;
+import net.minecraft.world.rule.GameRule;
+import net.minecraft.world.rule.GameRuleVisitor;
+import net.minecraft.world.rule.GameRules;
 import net.minecraft.world.PersistentState;
 import net.minecraft.world.PersistentStateType;
 import net.minecraft.world.World;
@@ -188,34 +190,34 @@ public final class MapWorkspaceManager extends PersistentState {
     }
 
     private RuntimeWorldHandle getOrCreateDimension(Identifier identifier, RuntimeWorldConfig config) {
-        this.applyDefaultsToConfig(config);
 
         var dimensionId = identifier.withPrefixedPath("workspace_");
-        return Fantasy.get(this.server).getOrOpenPersistentWorld(dimensionId, config);
+        var fantasyWorld = Fantasy.get(this.server).getOrOpenPersistentWorld(dimensionId, config);
+        this.applyDefaultsToConfig(config, fantasyWorld.asWorld());
+        return fantasyWorld;
     }
 
-    private void applyDefaultsToConfig(RuntimeWorldConfig config) {
+    private void applyDefaultsToConfig(RuntimeWorldConfig config, ServerWorld world) {
         // TODO: fantasy: make all commands channel through the correct world
         //        + then serialize the runtimeworldconfig for each workspace
         config.setDifficulty(this.server.getOverworld().getDifficulty());
-
-        var serverRules = MapWorkspaceManager.this.server.getGameRules();
+        var serverRules = world.getGameRules();
         var workspaceRules = config.getGameRules();
 
-        serverRules.accept(new GameRules.Visitor() {
+        serverRules.accept(new GameRuleVisitor() {
             @Override
-            public void visitInt(GameRules.Key<GameRules.IntRule> key, GameRules.Type<GameRules.IntRule> type) {
-                var value = serverRules.get(key);
+            public void visitInt(GameRule<Integer> key) {
+                var value = serverRules.getValue(key);
                 if (!workspaceRules.contains(key)) {
-                    workspaceRules.set(key, value.get());
+                    workspaceRules.set(key, value);
                 }
             }
 
             @Override
-            public void visitBoolean(GameRules.Key<GameRules.BooleanRule> key, GameRules.Type<GameRules.BooleanRule> type) {
-                var value = serverRules.get(key);
+            public void visitBoolean(GameRule<Boolean> key) {
+                var value = serverRules.getValue(key);
                 if (!workspaceRules.contains(key)) {
-                    workspaceRules.set(key, value.get());
+                    workspaceRules.set(key, value);
                 }
             }
         });
