@@ -22,7 +22,7 @@ public final class DimensionOptionsArgument {
         return Commands.argument(name, IdentifierArgument.id())
                 .suggests((context, builder) -> {
                     var source = context.getSource();
-                    var registryManager = source.getServer().registries().compositeAccess();;
+                    var registryManager = source.getServer().registries().compositeAccess();
                     var dimensions = registryManager.lookupOrThrow(Registries.LEVEL_STEM);
 
                     return SharedSuggestionProvider.suggestResource(
@@ -36,7 +36,7 @@ public final class DimensionOptionsArgument {
         var identifier = IdentifierArgument.getId(context, name);
 
         var source = context.getSource();
-        var registryManager = source.getServer().registries().compositeAccess();;
+        var registryManager = source.getServer().registries().compositeAccess();
         var dimensions = registryManager.lookupOrThrow(Registries.LEVEL_STEM);
 
         var dimension = dimensions.getValue(identifier);

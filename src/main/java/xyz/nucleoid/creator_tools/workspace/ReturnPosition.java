@@ -16,16 +16,14 @@ import java.util.Map;
 public record ReturnPosition(ResourceKey<Level> dimension, Vec3 position, float yaw, float pitch) {
     private static final Codec<ResourceKey<Level>> KEY_CODEC = ResourceKey.codec(Registries.DIMENSION);
 
-    public static final Codec<ReturnPosition> CODEC = RecordCodecBuilder.create(instance -> {
-        return instance.group(
-                KEY_CODEC.fieldOf("dimension").forGetter(ReturnPosition::dimension),
-                Codec.DOUBLE.optionalFieldOf("x", 0d).forGetter(pos -> pos.position.x),
-                Codec.DOUBLE.optionalFieldOf("y", 0d).forGetter(pos -> pos.position.y),
-                Codec.DOUBLE.optionalFieldOf("z", 0d).forGetter(pos -> pos.position.z),
-                Codec.FLOAT.optionalFieldOf("yaw", 0f).forGetter(pos -> pos.yaw),
-                Codec.FLOAT.optionalFieldOf("pitch", 0f).forGetter(pos -> pos.pitch)
-        ).apply(instance, ReturnPosition::new);
-    });
+    public static final Codec<ReturnPosition> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            KEY_CODEC.fieldOf("dimension").forGetter(ReturnPosition::dimension),
+            Codec.DOUBLE.optionalFieldOf("x", 0d).forGetter(pos -> pos.position.x),
+            Codec.DOUBLE.optionalFieldOf("y", 0d).forGetter(pos -> pos.position.y),
+            Codec.DOUBLE.optionalFieldOf("z", 0d).forGetter(pos -> pos.position.z),
+            Codec.FLOAT.optionalFieldOf("yaw", 0f).forGetter(pos -> pos.yaw),
+            Codec.FLOAT.optionalFieldOf("pitch", 0f).forGetter(pos -> pos.pitch)
+    ).apply(instance, ReturnPosition::new));
 
     public static final Codec<Map<ResourceKey<Level>, ReturnPosition>> MAP_CODEC = Codec.unboundedMap(KEY_CODEC, CODEC);
 

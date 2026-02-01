@@ -17,6 +17,7 @@ import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 import xyz.nucleoid.creator_tools.component.CreatorToolsDataComponentTypes;
 import xyz.nucleoid.creator_tools.workspace.MapWorkspaceManager;
 import xyz.nucleoid.creator_tools.workspace.editor.ServersideWorkspaceEditor;
@@ -70,7 +71,7 @@ public final class RegionVisibilityFilterItem extends Item implements PolymerIte
         var regions = getRegions(stack);
 
         if (regions != null && !regions.isEmpty()) {
-            var region = regions.get(0);
+            var region = regions.getFirst();
 
             displayStack.set(DataComponents.DYED_COLOR, new DyedItemColor(ServersideWorkspaceEditor.colorForRegionBorder(region)));
             displayStack.update(DataComponents.TOOLTIP_DISPLAY, TooltipDisplay.DEFAULT, display -> display.withHidden(DataComponents.DYED_COLOR, true));
@@ -79,6 +80,7 @@ public final class RegionVisibilityFilterItem extends Item implements PolymerIte
         return displayStack;
     }
 
+    @SuppressWarnings("deprecation") // not deprecated
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay displayComponent, Consumer<Component> textConsumer, TooltipFlag type) {
         var regions = getRegions(stack);

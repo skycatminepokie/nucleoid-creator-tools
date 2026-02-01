@@ -224,13 +224,9 @@ public final class MapWorkspace {
         // Entities
         var entitiesTag = root.getCompoundOrEmpty("entities");
 
-        entitiesTag.read("entities", UUIDUtil.CODEC.listOf()).ifPresent(uuids -> {
-            uuids.forEach(map.entitiesToInclude::add);
-        });
+        entitiesTag.read("entities", UUIDUtil.CODEC.listOf()).ifPresent(map.entitiesToInclude::addAll);
 
-        entitiesTag.read("types", BuiltInRegistries.ENTITY_TYPE.byNameCodec().listOf()).ifPresent(types -> {
-            types.forEach(map.entityTypesToInclude::add);
-        });
+        entitiesTag.read("types", BuiltInRegistries.ENTITY_TYPE.byNameCodec().listOf()).ifPresent(map.entityTypesToInclude::addAll);
 
         // Data
         map.data = root.getCompoundOrEmpty("data");

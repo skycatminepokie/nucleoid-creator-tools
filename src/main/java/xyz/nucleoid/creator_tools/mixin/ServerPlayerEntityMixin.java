@@ -15,6 +15,7 @@ import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -31,12 +32,12 @@ import java.util.Map;
 public abstract class ServerPlayerEntityMixin extends Player implements WorkspaceTraveler {
     @Shadow
     @Final
-    public MinecraftServer server;
+    private MinecraftServer server;
 
-    private ReturnPosition leaveReturn;
-    private final Map<ResourceKey<Level>, ReturnPosition> workspaceReturns = new Reference2ObjectOpenHashMap<>();
+    @Unique private ReturnPosition leaveReturn;
+    @Unique private final Map<ResourceKey<Level>, ReturnPosition> workspaceReturns = new Reference2ObjectOpenHashMap<>();
 
-    private int creatorToolsProtocolVersion = WorkspaceNetworking.NO_PROTOCOL_VERSION;
+    @Unique private int creatorToolsProtocolVersion = WorkspaceNetworking.NO_PROTOCOL_VERSION;
 
     private ServerPlayerEntityMixin(Level world, GameProfile gameProfile) {
         super(world, gameProfile);
@@ -75,6 +76,7 @@ public abstract class ServerPlayerEntityMixin extends Player implements Workspac
         this.onDimensionChange(target.newLevel());
     }
 
+    @Unique
     private void onDimensionChange(ServerLevel targetWorld) {
         var sourceDimension = this.level().dimension();
         var targetDimension = targetWorld.dimension();

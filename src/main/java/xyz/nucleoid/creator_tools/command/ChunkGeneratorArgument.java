@@ -21,12 +21,10 @@ public final class ChunkGeneratorArgument {
 
     public static RequiredArgumentBuilder<CommandSourceStack, Identifier> argument(String name) {
         return Commands.argument(name, IdentifierArgument.id())
-                .suggests((context, builder) -> {
-                    return SharedSuggestionProvider.suggestResource(
-                            BuiltInRegistries.CHUNK_GENERATOR.keySet().stream(),
-                            builder
-                    );
-                });
+                .suggests((context, builder) -> SharedSuggestionProvider.suggestResource(
+                        BuiltInRegistries.CHUNK_GENERATOR.keySet().stream(),
+                        builder
+                ));
     }
 
     public static MapCodec<? extends ChunkGenerator> get(CommandContext<CommandSourceStack> context, String name) throws CommandSyntaxException {

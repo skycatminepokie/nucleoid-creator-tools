@@ -26,7 +26,6 @@ public final class WorkspaceNetworking {
     );
 
     private WorkspaceNetworking() {
-        return;
     }
 
     public static void register() {
@@ -42,9 +41,8 @@ public final class WorkspaceNetworking {
         PayloadTypeRegistry.playC2S().register(WorkspaceRegionAddC2SPayload.ID, WorkspaceRegionAddC2SPayload.CODEC);
 
         // Receivers
-        ServerPlayNetworking.registerGlobalReceiver(OptInC2SPayload.ID, (payload, context) -> {
-            WorkspaceTraveler.setCreatorToolsProtocolVersion(context.player(), payload.protocolVersion());
-        });
+        ServerPlayNetworking.registerGlobalReceiver(OptInC2SPayload.ID, (payload, context) ->
+                WorkspaceTraveler.setCreatorToolsProtocolVersion(context.player(), payload.protocolVersion()));
     }
 
     private static void registerBidirectionalPayloads(PayloadTypeRegistry<?> registry) {

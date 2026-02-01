@@ -31,9 +31,7 @@ public final class CreatorTools implements ModInitializer {
 
         ServerLifecycleEvents.SERVER_STARTED.register(MapWorkspaceManager::migratePath);
 
-        ServerTickEvents.START_SERVER_TICK.register(server -> {
-            MapWorkspaceManager.get(server).tick();
-        });
+        ServerTickEvents.START_SERVER_TICK.register(server -> MapWorkspaceManager.get(server).tick());
 
         WorkspaceNetworking.register();
     }

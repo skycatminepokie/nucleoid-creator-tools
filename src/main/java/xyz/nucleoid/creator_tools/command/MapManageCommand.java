@@ -413,7 +413,7 @@ public final class MapManageCommand {
         }, Util.ioPool());
     }
 
-    protected static Component getClickablePosText(BlockPos pos) {
+    private static Component getClickablePosText(BlockPos pos) {
         var linkCommand = "/tp @s " + pos.getX() + " " + pos.getY() + " " + pos.getZ();
         var linkStyle = Style.EMPTY
                 .withClickEvent(new ClickEvent.SuggestCommand(linkCommand))

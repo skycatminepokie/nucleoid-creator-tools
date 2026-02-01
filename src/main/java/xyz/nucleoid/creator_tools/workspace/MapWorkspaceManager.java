@@ -50,9 +50,7 @@ public final class MapWorkspaceManager extends SavedData {
     }
 
     public static MapWorkspaceManager get(MinecraftServer server) {
-        var codec = CompoundTag.CODEC.xmap(nbt -> {
-            return readNbt(server, nbt);
-        }, manager -> {
+        var codec = CompoundTag.CODEC.xmap(nbt -> readNbt(server, nbt), manager -> {
             var nbt = new CompoundTag();
             manager.writeNbt(nbt);
             return nbt;
