@@ -18,7 +18,6 @@ import net.minecraft.world.level.saveddata.SavedData;
 import net.minecraft.world.level.saveddata.SavedDataType;
 import org.jetbrains.annotations.Nullable;
 import xyz.nucleoid.creator_tools.CreatorTools;
-import xyz.nucleoid.creator_tools.mixin.DimensionDataStorageAccess;
 import xyz.nucleoid.creator_tools.workspace.editor.WorkspaceEditor;
 import xyz.nucleoid.creator_tools.workspace.editor.WorkspaceEditorManager;
 import xyz.nucleoid.fantasy.Fantasy;
@@ -240,11 +239,11 @@ public final class MapWorkspaceManager extends SavedData {
 
         try {
             // Don't overwrite a migrated file, if one exists
-            var path = ((DimensionDataStorageAccess)manager).callGetDataFile(MapWorkspaceManager.KEY);
+            var path = manager.getDataFile(MapWorkspaceManager.KEY);
             var file = path.toFile();
             if (file.isFile()) return;
 
-            var legacyPath = ((DimensionDataStorageAccess)manager).callGetDataFile(MapWorkspaceManager.LEGACY_KEY);
+            var legacyPath = manager.getDataFile(MapWorkspaceManager.LEGACY_KEY);
             var legacyFile = legacyPath.toFile();
             if (!legacyFile.isFile()) return;
 
