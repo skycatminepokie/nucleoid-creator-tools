@@ -84,3 +84,21 @@ To work with data on the global map, the commands function similarly:
 Once your map is complete, you will want to export it into a file that can be loaded by a minigame mod. This can be done simply by running: `/map export <id>`.
 
 The exported map will be placed in `/nucleoid_creator_tools/exports/<namespace>/map_templates/<path>.nbt`
+
+## To release
+
+You'll need these environment variables, along with gpg-agent running and a gpg key:
+```
+JRELEASER_MAVENCENTRAL_USERNAME=usernameFromMavenCentralUserToken
+JRELEASER_MAVENCENTRAL_PASSWORD=passwordFromMavenCentralUserToken
+JRELEASER_GITHUB_TOKEN=dummy
+```
+
+Don't commit your environment variables to Git or publish them.
+
+Commands to run:
+
+1. `./gradlew jreleaserConfig`
+2. `./gradlew clean`
+3. `./gradlew publish`
+4. `./gradlew jreleaserDeploy`
