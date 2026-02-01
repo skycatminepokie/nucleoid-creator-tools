@@ -1,19 +1,12 @@
 package xyz.nucleoid.creator_tools.workspace.editor;
 
+import com.google.common.base.Predicates;
 import eu.pb4.polymer.virtualentity.api.ElementHolder;
 import eu.pb4.polymer.virtualentity.api.attachment.HolderAttachment;
 import eu.pb4.polymer.virtualentity.api.elements.TextDisplayElement;
 import it.unimi.dsi.fastutil.HashCommon;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
-import org.jetbrains.annotations.Nullable;
-import com.google.common.base.Predicates;
-import xyz.nucleoid.creator_tools.workspace.MapWorkspace;
-import xyz.nucleoid.creator_tools.workspace.WorkspaceRegion;
-import xyz.nucleoid.creator_tools.workspace.trace.PartialRegion;
-import xyz.nucleoid.creator_tools.workspace.trace.RegionTraceMode;
-import xyz.nucleoid.map_templates.BlockBounds;
-import java.util.function.Predicate;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.TextComponentTagVisitor;
 import net.minecraft.network.chat.CommonComponents;
@@ -21,6 +14,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Display;
+import org.jetbrains.annotations.Nullable;
+import xyz.nucleoid.creator_tools.workspace.MapWorkspace;
+import xyz.nucleoid.creator_tools.workspace.WorkspaceRegion;
+import xyz.nucleoid.creator_tools.workspace.trace.PartialRegion;
+import xyz.nucleoid.creator_tools.workspace.trace.RegionTraceMode;
+import xyz.nucleoid.map_templates.BlockBounds;
+
+import java.util.function.Predicate;
 
 public final class ServersideWorkspaceEditor implements WorkspaceEditor {
     private static final int PARTICLE_INTERVAL = 10;

@@ -1,8 +1,6 @@
 package xyz.nucleoid.creator_tools.item;
 
-import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
+import eu.pb4.polymer.core.api.item.PolymerItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -19,12 +17,14 @@ import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
-
-import eu.pb4.polymer.core.api.item.PolymerItem;
 import xyz.nucleoid.creator_tools.component.CreatorToolsDataComponentTypes;
 import xyz.nucleoid.creator_tools.workspace.MapWorkspaceManager;
 import xyz.nucleoid.creator_tools.workspace.editor.ServersideWorkspaceEditor;
 import xyz.nucleoid.packettweaker.PacketContext;
+
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 public final class RegionVisibilityFilterItem extends Item implements PolymerItem {
     public RegionVisibilityFilterItem(Properties settings) {

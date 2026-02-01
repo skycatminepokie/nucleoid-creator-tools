@@ -5,10 +5,6 @@ import eu.pb4.polymer.virtualentity.api.VirtualEntityUtils;
 import eu.pb4.polymer.virtualentity.api.attachment.HolderAttachment;
 import eu.pb4.polymer.virtualentity.api.attachment.ManualAttachment;
 import eu.pb4.polymer.virtualentity.impl.HolderAttachmentHolder;
-import xyz.nucleoid.creator_tools.CreatorTools;
-
-import java.util.Collection;
-import java.util.UUID;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerChunkCache;
 import net.minecraft.server.level.ServerLevel;
@@ -16,6 +12,10 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.ServerGamePacketListenerImpl;
 import net.minecraft.world.level.chunk.LevelChunk;
 import net.minecraft.world.phys.Vec3;
+import xyz.nucleoid.creator_tools.CreatorTools;
+
+import java.util.Collection;
+import java.util.UUID;
 
 public class SinglePlayerChunkAttachment implements HolderAttachment {
     private final ElementHolder holder;

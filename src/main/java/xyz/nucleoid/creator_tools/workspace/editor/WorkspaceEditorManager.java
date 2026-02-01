@@ -2,6 +2,12 @@ package xyz.nucleoid.creator_tools.workspace.editor;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Reference2ObjectOpenHashMap;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import xyz.nucleoid.creator_tools.workspace.MapWorkspace;
 import xyz.nucleoid.creator_tools.workspace.WorkspaceListener;
@@ -11,12 +17,6 @@ import xyz.nucleoid.map_templates.BlockBounds;
 
 import java.util.Map;
 import java.util.UUID;
-import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.Level;
 
 public final class WorkspaceEditorManager {
     private final Map<ResourceKey<Level>, WorkspaceHandler> workspaces = new Reference2ObjectOpenHashMap<>();

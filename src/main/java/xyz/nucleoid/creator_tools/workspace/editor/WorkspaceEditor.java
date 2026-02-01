@@ -1,11 +1,12 @@
 package xyz.nucleoid.creator_tools.workspace.editor;
 
-import java.util.function.Predicate;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import org.jetbrains.annotations.Nullable;
 import xyz.nucleoid.creator_tools.workspace.WorkspaceRegion;
 import xyz.nucleoid.map_templates.BlockBounds;
+
+import java.util.function.Predicate;
 
 public interface WorkspaceEditor {
     default void addRegion(WorkspaceRegion region) {

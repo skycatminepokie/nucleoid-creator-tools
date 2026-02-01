@@ -1,14 +1,14 @@
 package xyz.nucleoid.creator_tools.workspace.editor.payload.s2c;
 
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import xyz.nucleoid.creator_tools.workspace.WorkspaceRegion;
 import xyz.nucleoid.creator_tools.workspace.editor.WorkspaceNetworking;
 import xyz.nucleoid.map_templates.BlockBounds;
 
 import java.util.Collection;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.network.codec.StreamCodec;
-import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 
 public record WorkspaceRegionsS2CPayload(String marker, Collection<Entry> regions) implements CustomPacketPayload {
     public static final CustomPacketPayload.Type<WorkspaceRegionsS2CPayload> ID = WorkspaceNetworking.id("workspace/regions");

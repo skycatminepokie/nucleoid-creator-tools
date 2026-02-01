@@ -1,6 +1,5 @@
 package xyz.nucleoid.creator_tools.mixin;
 
-import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;

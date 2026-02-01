@@ -1,21 +1,17 @@
 package xyz.nucleoid.creator_tools.workspace.editor;
 
-import java.util.stream.Collectors;
-
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
 import xyz.nucleoid.creator_tools.workspace.MapWorkspace;
 import xyz.nucleoid.creator_tools.workspace.WorkspaceRegion;
-import xyz.nucleoid.creator_tools.workspace.editor.payload.WorkspaceBoundsPayload;
-import xyz.nucleoid.creator_tools.workspace.editor.payload.WorkspaceDataPayload;
-import xyz.nucleoid.creator_tools.workspace.editor.payload.WorkspaceLeavePayload;
-import xyz.nucleoid.creator_tools.workspace.editor.payload.WorkspaceRegionPayload;
-import xyz.nucleoid.creator_tools.workspace.editor.payload.WorkspaceRegionRemovePayload;
+import xyz.nucleoid.creator_tools.workspace.editor.payload.*;
 import xyz.nucleoid.creator_tools.workspace.editor.payload.s2c.WorkspaceEnterS2CPayload;
 import xyz.nucleoid.creator_tools.workspace.editor.payload.s2c.WorkspaceRegionsS2CPayload;
 import xyz.nucleoid.map_templates.BlockBounds;
+
+import java.util.stream.Collectors;
 
 /**
  * An editor implementation that uses {@linkplain WorkspaceNetworking networking} for use with clientside mods.

@@ -3,9 +3,10 @@ package xyz.nucleoid.creator_tools.component;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.netty.buffer.ByteBuf;
-import java.util.List;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
+
+import java.util.List;
 
 public record RegionVisibilityFilterComponent(List<String> regions) {
     public static final Codec<RegionVisibilityFilterComponent> CODEC = RecordCodecBuilder.create(instance -> {

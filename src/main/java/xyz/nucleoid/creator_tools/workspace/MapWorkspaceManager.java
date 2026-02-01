@@ -28,11 +28,7 @@ import xyz.nucleoid.fantasy.util.VoidChunkGenerator;
 import xyz.nucleoid.map_templates.BlockBounds;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public final class MapWorkspaceManager extends SavedData {
     private static final String LEGACY_KEY = "plasmid:map_workspaces";

@@ -1,10 +1,10 @@
 package xyz.nucleoid.creator_tools.workspace;
 
-import xyz.nucleoid.creator_tools.workspace.editor.WorkspaceNetworking;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
+import xyz.nucleoid.creator_tools.workspace.editor.WorkspaceNetworking;
 
 public interface WorkspaceTraveler {
     @Nullable
