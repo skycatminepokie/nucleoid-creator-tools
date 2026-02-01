@@ -21,15 +21,15 @@ import java.util.UUID;
 public final class WorkspaceEditorManager {
     private final Map<ResourceKey<Level>, WorkspaceHandler> workspaces = new Reference2ObjectOpenHashMap<>();
 
-    public void onPlayerAddToWorld(ServerPlayer player, ServerLevel world) {
-        var workspace = this.workspaces.get(world.dimension());
+    public void onPlayerAddToWorld(ServerPlayer player, ServerLevel level) {
+        var workspace = this.workspaces.get(level.dimension());
         if (workspace != null) {
             workspace.addEditor(player, this.createEditorFor(player, workspace.workspace));
         }
     }
 
-    public void onPlayerRemoveFromWorld(ServerPlayer player, ServerLevel world) {
-        var workspace = this.workspaces.get(world.dimension());
+    public void onPlayerRemoveFromWorld(ServerPlayer player, ServerLevel level) {
+        var workspace = this.workspaces.get(level.dimension());
         if (workspace != null) {
             var editor = workspace.editors.remove(player.getUUID());
             if (editor != null) {
@@ -48,11 +48,11 @@ public final class WorkspaceEditorManager {
         var handler = new WorkspaceHandler(workspace);
         workspace.addListener(handler);
 
-        this.workspaces.put(workspace.getWorld().dimension(), handler);
+        this.workspaces.put(workspace.getLevel().dimension(), handler);
     }
 
     public void removeWorkspace(MapWorkspace workspace) {
-        this.workspaces.remove(workspace.getWorld().dimension());
+        this.workspaces.remove(workspace.getLevel().dimension());
     }
 
     private WorkspaceEditor createEditorFor(ServerPlayer player, MapWorkspace workspace) {

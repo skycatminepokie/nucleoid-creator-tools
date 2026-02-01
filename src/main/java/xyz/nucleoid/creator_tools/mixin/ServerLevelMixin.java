@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import xyz.nucleoid.creator_tools.workspace.MapWorkspaceManager;
 
 @Mixin(ServerLevel.class)
-public class ServerWorldMixin {
+public class ServerLevelMixin {
     @Final
     @Shadow
     private MinecraftServer server;

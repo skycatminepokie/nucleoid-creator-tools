@@ -36,14 +36,14 @@ public class SinglePlayerChunkAttachment implements HolderAttachment {
         this.holder.setAttachment(this);
     }
 
-    public static HolderAttachment of(ElementHolder holder, ServerLevel world, Vec3 pos, ServerPlayer player) {
-        var chunk = world.getChunk(BlockPos.containing(pos));
+    public static HolderAttachment of(ElementHolder holder, ServerLevel level, Vec3 pos, ServerPlayer player) {
+        var chunk = level.getChunk(BlockPos.containing(pos));
 
         if (chunk instanceof LevelChunk chunk1) {
             return new SinglePlayerChunkAttachment(holder, chunk1, pos, player);
         } else {
             CreatorTools.LOGGER.warn("We tried to attach at {}, but it isn't loaded!", BlockPos.containing(pos).toShortString(), new NullPointerException());
-            return new ManualAttachment(holder, world, () -> pos);
+            return new ManualAttachment(holder, level, () -> pos);
         }
     }
 

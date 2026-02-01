@@ -74,12 +74,12 @@ public final class MapWorkspaceManager extends SavedData {
         return this.editorManager.getEditorFor(player);
     }
 
-    public void onPlayerAddToWorld(ServerPlayer player, ServerLevel world) {
-        this.editorManager.onPlayerAddToWorld(player, world);
+    public void onPlayerAddToWorld(ServerPlayer player, ServerLevel level) {
+        this.editorManager.onPlayerAddToWorld(player, level);
     }
 
-    public void onPlayerRemoveFromWorld(ServerPlayer player, ServerLevel world) {
-        this.editorManager.onPlayerRemoveFromWorld(player, world);
+    public void onPlayerRemoveFromWorld(ServerPlayer player, ServerLevel level) {
+        this.editorManager.onPlayerRemoveFromWorld(player, level);
     }
 
     public MapWorkspace open(Identifier identifier) {
@@ -105,7 +105,7 @@ public final class MapWorkspaceManager extends SavedData {
 
     public boolean delete(MapWorkspace workspace) {
         if (this.workspacesById.remove(workspace.getIdentifier(), workspace)) {
-            var world = workspace.getWorld();
+            var world = workspace.getLevel();
             this.workspacesByDimension.remove(world.dimension());
 
             for (var player : new ArrayList<>(world.players())) {
@@ -190,11 +190,11 @@ public final class MapWorkspaceManager extends SavedData {
         return fantasyWorld;
     }
 
-    private void applyDefaultsToConfig(RuntimeWorldConfig config, ServerLevel world) {
+    private void applyDefaultsToConfig(RuntimeWorldConfig config, ServerLevel level) {
         // TODO: fantasy: make all commands channel through the correct world
         //        + then serialize the runtimeworldconfig for each workspace
         config.setDifficulty(this.server.overworld().getDifficulty());
-        var serverRules = world.getGameRules();
+        var serverRules = level.getGameRules();
         var workspaceRules = config.getGameRules();
 
         serverRules.visitGameRuleTypes(new GameRuleTypeVisitor() {

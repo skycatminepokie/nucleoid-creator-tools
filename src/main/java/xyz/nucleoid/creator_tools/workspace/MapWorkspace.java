@@ -249,12 +249,12 @@ public final class MapWorkspace {
 
         this.writeMetadataToTemplate(map);
 
-        var world = this.worldHandle.asWorld();
+        var level = this.worldHandle.asWorld();
 
-        this.writeBlocksToTemplate(map, world);
+        this.writeBlocksToTemplate(map, level);
 
         if (includeEntities) {
-            this.writeEntitiesToTemplate(map, world);
+            this.writeEntitiesToTemplate(map, level);
         }
 
         return map;
@@ -273,26 +273,26 @@ public final class MapWorkspace {
         }
     }
 
-    private void writeBlocksToTemplate(MapTemplate map, ServerLevel world) {
+    private void writeBlocksToTemplate(MapTemplate map, ServerLevel level) {
         for (var pos : this.bounds) {
             var localPos = this.globalToLocal(pos);
 
-            var state = world.getBlockState(pos);
+            var state = level.getBlockState(pos);
             if (state.isAir()) {
                 continue;
             }
 
             map.setBlockState(localPos, state);
 
-            var entity = world.getBlockEntity(pos);
+            var entity = level.getBlockEntity(pos);
             if (entity != null) {
-                map.setBlockEntity(localPos, entity, world.registryAccess());
+                map.setBlockEntity(localPos, entity, level.registryAccess());
             }
         }
     }
 
-    private void writeEntitiesToTemplate(MapTemplate map, ServerLevel world) {
-        var entities = world.getEntitiesOfClass(Entity.class, this.bounds.asBox(), entity -> {
+    private void writeEntitiesToTemplate(MapTemplate map, ServerLevel level) {
+        var entities = level.getEntitiesOfClass(Entity.class, this.bounds.asBox(), entity -> {
             if (entity.isRemoved()) {
                 return false;
             }
@@ -317,7 +317,7 @@ public final class MapWorkspace {
         return BlockBounds.of(this.globalToLocal(bounds.min()), this.globalToLocal(bounds.max()));
     }
 
-    public ServerLevel getWorld() {
+    public ServerLevel getLevel() {
         return this.worldHandle.asWorld();
     }
 

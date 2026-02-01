@@ -236,7 +236,7 @@ public final class MapManageCommand {
 
         var workspace = MapWorkspaceArgument.get(context, "workspace");
 
-        var workspaceWorld = workspace.getWorld();
+        var workspaceWorld = workspace.getLevel();
 
         var returnPosition = WorkspaceTraveler.getReturnFor(player, workspaceWorld.dimension());
         if (returnPosition != null) {
@@ -380,7 +380,7 @@ public final class MapManageCommand {
 
                 try {
                     var placer = new MapTemplatePlacer(template);
-                    placer.placeAt(workspace.getWorld(), origin);
+                    placer.placeAt(workspace.getLevel(), origin);
                     source.sendSuccess(() ->
                                     Component.translatable("text.nucleoid_creator_tools.map.import.success",
                                             Component.translationArg(toWorkspaceId).copy().withStyle(style -> style

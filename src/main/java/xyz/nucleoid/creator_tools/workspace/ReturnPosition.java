@@ -35,10 +35,10 @@ public record ReturnPosition(ResourceKey<Level> dimension, Vec3 position, float 
         return new ReturnPosition(player.level().dimension(), player.position(), player.getYRot(), player.getXRot());
     }
 
-    public static ReturnPosition ofSpawn(ServerLevel world) {
+    public static ReturnPosition ofSpawn(ServerLevel level) {
 
-        var spawnPos = world.getRespawnData().pos();
-        return new ReturnPosition(world.dimension(), Vec3.atBottomCenterOf(spawnPos), 0.0F, 0.0F);
+        var spawnPos = level.getRespawnData().pos();
+        return new ReturnPosition(level.dimension(), Vec3.atBottomCenterOf(spawnPos), 0.0F, 0.0F);
     }
 
     public void applyTo(ServerPlayer player) {

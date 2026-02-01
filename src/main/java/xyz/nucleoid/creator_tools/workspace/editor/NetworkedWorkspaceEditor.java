@@ -31,7 +31,7 @@ public class NetworkedWorkspaceEditor implements WorkspaceEditor {
             this.sendPacket(new WorkspaceEnterS2CPayload(
                     this.workspace.getIdentifier(),
                     this.workspace.getBounds(),
-                    this.workspace.getWorld().dimension().identifier(),
+                    this.workspace.getLevel().dimension().identifier(),
                     this.workspace.getData()));
         }
 

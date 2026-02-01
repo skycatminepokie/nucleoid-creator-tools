@@ -29,7 +29,7 @@ import xyz.nucleoid.creator_tools.workspace.editor.WorkspaceNetworking;
 import java.util.Map;
 
 @Mixin(ServerPlayer.class)
-public abstract class ServerPlayerEntityMixin extends Player implements WorkspaceTraveler {
+public abstract class ServerPlayerMixin extends Player implements WorkspaceTraveler {
     @Shadow
     @Final
     private MinecraftServer server;
@@ -39,8 +39,8 @@ public abstract class ServerPlayerEntityMixin extends Player implements Workspac
 
     @Unique private int creatorToolsProtocolVersion = WorkspaceNetworking.NO_PROTOCOL_VERSION;
 
-    private ServerPlayerEntityMixin(Level world, GameProfile gameProfile) {
-        super(world, gameProfile);
+    private ServerPlayerMixin(Level level, GameProfile gameProfile) {
+        super(level, gameProfile);
     }
 
     @Inject(method = "addAdditionalSaveData", at = @At("RETURN"))
@@ -64,7 +64,7 @@ public abstract class ServerPlayerEntityMixin extends Player implements Workspac
 
     @Inject(method = "restoreFrom", at = @At("RETURN"))
     private void copyFrom(ServerPlayer from, boolean alive, CallbackInfo ci) {
-        var fromTraveler = (ServerPlayerEntityMixin) (Object) from;
+        var fromTraveler = (ServerPlayerMixin) (Object) from;
         this.leaveReturn = fromTraveler.leaveReturn;
         this.workspaceReturns.clear();
         this.workspaceReturns.putAll(fromTraveler.workspaceReturns);
@@ -77,9 +77,9 @@ public abstract class ServerPlayerEntityMixin extends Player implements Workspac
     }
 
     @Unique
-    private void onDimensionChange(ServerLevel targetWorld) {
+    private void onDimensionChange(ServerLevel targetLevel) {
         var sourceDimension = this.level().dimension();
-        var targetDimension = targetWorld.dimension();
+        var targetDimension = targetLevel.dimension();
 
         var workspaceManager = MapWorkspaceManager.get(this.server);
         if (workspaceManager.isWorkspace(sourceDimension)) {
