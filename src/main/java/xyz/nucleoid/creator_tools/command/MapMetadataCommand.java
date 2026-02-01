@@ -24,6 +24,7 @@ import net.minecraft.nbt.TextComponentTagVisitor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.server.permissions.PermissionLevel;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.player.Player;
@@ -174,7 +175,7 @@ public final class MapMetadataCommand {
     // @formatter:off
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(
-                literal("map").requires(Permissions.require("nucleoid_creator_extras.map", 2))
+                literal("map").requires(Permissions.require("nucleoid_creator_extras.map", PermissionLevel.GAMEMASTERS))
                 .then(literal("region")
                     .then(literal("add")
                         .then(regionMarkerArg("marker")

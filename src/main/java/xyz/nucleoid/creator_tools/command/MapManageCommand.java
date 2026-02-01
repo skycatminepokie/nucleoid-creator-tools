@@ -19,6 +19,7 @@ import net.minecraft.network.chat.*;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.RegistryOps;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.permissions.PermissionLevel;
 import net.minecraft.util.Util;
 import net.minecraft.world.level.dimension.BuiltinDimensionTypes;
 import net.minecraft.world.level.portal.TeleportTransition;
@@ -61,7 +62,7 @@ public final class MapManageCommand {
     // @formatter:off
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(
-            literal("map").requires(Permissions.require("nucleoid_creator_extras.map", 2))
+            literal("map").requires(Permissions.require("nucleoid_creator_extras.map", PermissionLevel.GAMEMASTERS))
                 .then(literal("open")
                     .then(argument("workspace", IdentifierArgument.id())
                     .executes(context -> MapManageCommand.openWorkspace(context, null))
