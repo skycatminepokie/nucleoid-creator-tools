@@ -77,3 +77,14 @@ if (System.getenv("MODRINTH")) {
     finalizedBy project.tasks.modrinth
   }
 }
+
+publishing {
+  publications {
+    create("mavenJava", MavenPublication) {
+      from components.java
+    }
+  }
+  repositories {
+    mavenLocal()
+  }
+}
